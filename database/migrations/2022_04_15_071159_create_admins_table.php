@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('username');
             $table->string('email')->unique();
             $table->string('password');
-            $table->text('alamat')->nullable();
-            $table->date('tgl_lahir')->nullable();
+            $table->text('alamat');
+            $table->date('tgl_lahir');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('admins');
     }
 };
