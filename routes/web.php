@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/cobahome', function () {
+    return view('layouts.main');
+});
+
+Route::get('/cobaberanda', function () {
+    return view('user.beranda');
 });
 
 Auth::routes();
 
+Route::get('/', [App\Http\Controllers\LandingController::class, 'landing'])->name('landing');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
