@@ -16,7 +16,7 @@ class TagController extends Controller
      */
     public function Tag()
     {
-        $tags = Tag::with('post')->paginate(2);
+        $tags = Tag::with('post');
         return view('user.tag', compact('tags'));
     }
 
@@ -40,7 +40,7 @@ class TagController extends Controller
 
     public function edittag($id)
     {
-        $tag =Tag::with('post')->paginate(2);
+        $tag =Tag::with('post');
         $tag=Tag::findorfail($id);
         return view ('user.edittag', compact ('tag'));
     }

@@ -18,7 +18,7 @@ class BerandaController extends Controller
      */
     public function post()
     {
-        $posts = Post::with('user','kategori')->paginate(2);
+        $posts = Post::with('user','kategori');
         return view('user.beranda', compact('posts'));
     }
 
@@ -44,7 +44,7 @@ class BerandaController extends Controller
 
     public function editpost($id)
     {
-        $posts = Post::with('user','kategori')->paginate(2);
+        $posts = Post::with('user','kategori');
         $post=Post::findorfail($id);
         return view ('user.editpost', compact ('post','posts'));
     }
