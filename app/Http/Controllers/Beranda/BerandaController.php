@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Beranda;
 
 use App\Models\Post;
+use App\Models\Kategori;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -16,40 +18,51 @@ class BerandaController extends Controller
      */
     public function post()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::with('user','kategori')->paginate(2);
         return view('user.beranda', compact('posts'));
     }
 
     public function tambahpost()
     {
-        return view('user.addpost');
+        $user = User::all();
+        $kategori = Kategori::all();
+        return view('user.addpost', compact('kategori','user'));
     }
 
     public function savepost(Request $request)
     {
+        Post::create([
+            'judul' => $request->judul,
+            'konten' => $request->konten,
+            'id_user' => $request->id_user,
+            'id_kategori' => $request->id_kategori,
+        ]); 
+        
+        return redirect()->route('post');
 
-        $this->validate($request, [
-            'gambar'     => 'required|image|mimes:png,jpg,jpeg',
-            'judul'     => 'required',
-            'konten'   => 'required'
-        ]);
+    }
 
-        //upload image
-        $image = $request->file('image');
-        $image->storeAs('public/gambar', $image->hashName());
+    public function editpost($id)
+    {
+        $posts = Post::with('user','kategori')->paginate(2);
+        $post=Post::findorfail($id);
+        return view ('user.editpost', compact ('post','posts'));
+    }
 
-        $post = Post::create([
-            'gambar'     => $image->hashName(),
-            'judul'     => $request->judul,
-            'konten'   => $request->konten
-        ]);
+    public function updatepost(Request $request, $id)
+    {
+        $post=Post::findorfail($id);
+        $post->update($request->all());
 
-        if($post){
-            //redirect dengan pesan sukses
-            return redirect()->route('blog.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
-            //redirect dengan pesan error
-            return redirect()->route('blog.index')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        return redirect()->route('post');
+    }
+
+    public function deletepost($id)
+    {
+
+        $post = Post::findorfail($id);
+        $post->delete();
+        return back();
+        
     }
 }

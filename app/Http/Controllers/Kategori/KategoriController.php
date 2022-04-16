@@ -32,8 +32,22 @@ class KategoriController extends Controller
             'deskripsi'=> $request->deskripsi
         ]);
 
-        return redirect()->route('kategori')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('kategori');
         
+    }
+
+    public function editkategori($id)
+    {
+        $kategori=Kategori::findorfail($id);
+        return view ('user.editkategori', compact ('kategori'));
+    }
+
+    public function updatekategori(Request $request, $id)
+    {
+        $kategori=Kategori::findorfail($id);
+        $kategori->update($request->all());
+
+        return redirect()->route('kategori');
     }
 
     public function deletekategori($id)
@@ -41,7 +55,7 @@ class KategoriController extends Controller
 
         $kategoris = Kategori::findorfail($id);
         $kategoris->delete();
-        return back()->with(['success','Data Berhasil Dihapus']);
+        return back();
         
     }
 }

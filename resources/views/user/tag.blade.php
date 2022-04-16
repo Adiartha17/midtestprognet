@@ -34,22 +34,34 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <a class = "btn btn-primary mb-2" href="/cobaaddtag">Tambahkan Tag Baru</a>
+                                    <a class = "btn btn-primary mb-2" href="{{ route('tambahtag') }}">Tambahkan Tag Baru</a>
                                     <table id="example" class="table table-striped table-bordered first" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Tag Blog</th>
+                                                <th>Deskripsi</th>
+                                                <th>Judul Blog</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- <tr> --}}
-                                                <a href="/cobaedittag" class="btn btn-sm btn-warning">Edit</a>
-                                                <form action="" method="">
+                                        @forelse ($tags as $tag)
+                                            <tr>
+                                            <td>{{ $tag->nama_tag }}</td>
+                                            <td>{{ $tag->deskripsi }}</td>
+                                            <td>{{ $tag->post->judul }}</td>
+                                            <td><a href="{{ route('edittag', $tag->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('deletetag', $tag->id) }}" method="post">
                                                     @csrf
                                                     <input type="submit" class="btn btn-sm btn-danger" value="Hapus">
                                                 </form>
-                                            {{-- </tr> --}}
+                                            </td>
+                                            </tr>
+                                        @empty
+                                        <tr>
+                                            <td class="text-center text-mute" colspan="4">Data tag tidak tersedia</td>
+                                        </tr>
+                                         @endforelse
                                         </tbody>
                                     </table>
                                 </div>

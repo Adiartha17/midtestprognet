@@ -38,21 +38,44 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <form action="" method="" enctype="multipart/form-data">
                                     <form action="{{ Route('savepost') }}" method="post" enctype="multipart/form-data">
+                                        <!-- @csrf
+                                            <div class="form-group">
+                                                <label for="inputGambar" class="col-form-label">Gambar</label>
+                                                <input type="file" class="form-control" id="gambar" name="gambar">
+                                            </div>     -->
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="kategori">Penerbit</label>
+                                            <select class="form-control" id="id_user" name="id_user" rows="10">
+                                                <option selected value>"Pilih Penerbit"</option>
+                                                @foreach ($user as $item)
+                                                <option value="{{ $item->id }}">{{ $item->username }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         @csrf
                                         <div class="form-group">
                                             <label for="inputJudul" class="col-form-label">Judul Blog</label>
-                                            <input type="text" class="form-control" id="judul" name="judul" value="{{ $post->judul }}">
+                                            <input type="text" class="form-control" id="judul" name="judul">
                                         </div>
                                         @csrf
                                         <div class="form-group">
                                             <label for="konten">Konten Blog</label>
-                                            <textarea class="form-control" id="konten" name="konten" value="" rows="10"></textarea>
-                                          </div>
+                                            <textarea class="form-control" id="konten" name="konten" rows="10"></textarea>
+                                        </div>
+                                        @csrf
+                                        <div class="form-group">
+                                            <label for="kategori">Pilih Kategori</label>
+                                            <select class="form-control" id="id_kategori" name="id_kategori" rows="10">
+                                                <option selected value>"Pilih Kategori"</option>
+                                                @foreach ($kategori as $item)
+                                                <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         <a type="button" class="btn btn-danger" href="{{ Route('post') }}">Back</a>
                                         <button type="submit" class="btn btn-success">Terbitkan</button>
-                                    </form>
                                     </form>
                                 </div>
                             </div>

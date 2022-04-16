@@ -48,7 +48,7 @@
                                             <tr>
                                             <td>{{ $kategori->nama_kategori }}</td>
                                             <td>{{ $kategori->deskripsi }}</td>
-                                            <td><a href="{{'updatekategori', $kategori->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <td><a href="{{ route('editkategori', $kategori->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                                 <form action="{{ route('deletekategori', $kategori->id) }}" method="post">
                                                     @csrf
                                                     <input type="submit" class="btn btn-sm btn-danger" value="Hapus">
@@ -57,7 +57,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td class="text-center text-mute" colspan="4">Data post tidak tersedia</td>
+                                                <td class="text-center text-mute" colspan="4">Data kategori tidak tersedia</td>
                                             </tr>
                                         @endforelse
                                         </tbody>

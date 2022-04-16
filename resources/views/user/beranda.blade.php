@@ -38,24 +38,26 @@
                                     <table id="example" class="table table-striped table-bordered first" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>Penerbit</th>
                                                 <th>Postingan Blog</th>
+                                                <th>Konten</th>
+                                                <th>Kategori</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($posts as $post)
                                             <tr>
+                                                <td>{{ $post->user->username }}</td>
                                                 <td>{{ $post->judul }}</td>
-                                                <td class="text-center">
-                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                        action="{{ route('post.destroy', $post->id) }}" method="POST">
-                                                        <a href="{{ route('post.edit', $post->id) }}"
-                                                            class="btn btn-sm btn-primary">EDIT</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                                    </form>
-                                                </td>
+                                                <td>{{ $post->konten }}</td>
+                                                <td>{{ $post->kategori->nama_kategori }}</td>
+                                                <td><a href="{{ route('editpost', $post->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('deletepost', $post->id) }}" method="post">
+                                                    @csrf
+                                                    <input type="submit" class="btn btn-sm btn-danger" value="Hapus">
+                                                </form>
+                                            </td>
                                             </tr>
                                             @empty
                                             <tr>
@@ -63,15 +65,6 @@
                                             </tr>
                                             @endforelse
                                         </tbody>
-                                        <!-- <tbody>
-                                            {{-- <tr> --}}
-                                                <a href="/cobaeditpost" class="btn btn-sm btn-warning">Edit</a>
-                                                <form action="" method="">
-                                                    @csrf
-                                                    <input type="submit" class="btn btn-sm btn-danger" value="Hapus">
-                                                </form>
-                                            {{-- </tr> --}}
-                                        </tbody> -->
                                     </table>
                                 </div>
                             </div>

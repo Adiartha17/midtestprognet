@@ -38,18 +38,28 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <form action="" method="" enctype="multipart/form-data">
+                                    <form action="{{ Route('savetag') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
                                               <label for="inputNama" class="col-form-label">Nama Tag</label>
-                                              <input type="text" class="form-control" id="nama" name="nama" value="">
+                                              <input type="text" class="form-control" id="nama_tag" name="nama_tag">
                                           </div>
                                         @csrf
                                         <div class="form-group">
                                             <label for="konten">Deskripsi</label>
-                                            <textarea class="form-control" id="konten" name="konten" value=" rows="10"></textarea>
+                                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="10"></textarea>
                                           </div>
-                                        <a type="button" class="btn btn-danger" href="/dashboard">Back</a>
+                                          @csrf
+                                        <div class="form-group">
+                                            <label for="kategori">Judul Blog</label>
+                                            <select class="form-control" id="id_post" name="id_post" rows="10">
+                                                <option selected value>"Pilih Judul Blog"</option>
+                                                @foreach ($post as $item)
+                                                <option value="{{ $item->id }}">{{ $item->judul }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <a type="button" class="btn btn-danger" href="{{ route('tag') }}">Back</a>
                                         <button type="submit" class="btn btn-success">Simpan</button>
                                     </form>
                                 </div>

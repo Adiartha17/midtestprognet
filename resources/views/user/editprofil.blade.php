@@ -39,31 +39,31 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <form action="" method="" enctype="multipart/form-data">
+                                    <form action="{{ route('saveprofil', $user->id) }}" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="user-avatar text-center d-block">
+                                        {{-- <div class="user-avatar text-center d-block">
                                             <img src="" alt="User Image" class="rounded-circle user-avatar-xxl">
                                             <input class="form-control col-lg-3" type="file" id="image" name="foto_user" value="">
                                             <input type="hidden" class="form-control" id="hidden_image" name="hidden_image" value="">
-                                          </div>
+                                          </div> --}}
                                           <div class="form-group">
                                               <label for="inputNama" class="col-form-label">Nama</label>
-                                              <input type="text" class="form-control" id="username" name="nama" value="" readonly>
+                                              <input type="text" class="form-control" id="username" name="username" value="{{$user->username}}">
                                           </div>
                                           <div class="form-group">
                                               <label for="inputEmail">Email</label>
-                                              <input type="text" class="form-control" id="email" name="email" value="" readonly>
+                                              <input type="text" class="form-control" id="email" name="email" value="{{$user->email}}">
                                           </div>
                                           <div class="form-group">
                                               <label for="inputAlamat" class="col-form-label">Alamat</label>
-                                              <input type="text" class="form-control" id="alamat" name="alamat" value="">
+                                              <input type="text" class="form-control" id="alamat" name="alamat" value="{{$user->alamat}}">
                                           </div>
                                           <div class="form-group">
-                                              <label for="inputTanggallahir">Tanggal Lahir</label>
-                                              <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir" value="" readonly>
+                                              <label for="inputTanggalLahir">Tanggal Lahir</label>
+                                              <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir" value="{{$user->tgl_lahir}}">
                                           </div>
                                         </div>
-                                        <a type="button" class="btn btn-danger" href="/profile">Back</a>
+                                        <a type="button" class="btn btn-danger" href="/profil">Kembali</a>
                                         <button type="submit" class="btn btn-success">Simpan</button>
                                     </form>
                                 </div>

@@ -36,13 +36,13 @@
                           <!-- ============================================================== -->
                           <!-- card profile -->
                           <!-- ============================================================== -->
-                          <div class="card">
+                          {{-- <div class="card">
                               <div class="card-body">
                                   <div class="user-avatar text-center d-block">
-                                    <img src="" alt="User Image" class="rounded-circle user-avatar-xxl">
+                                    <img src="{{ url('foto_user/'.$user->foto_user) }}" alt="User Image" class="rounded-circle user-avatar-xxl">
                                   </div>
                               </div>
-                          </div>
+                          </div> --}}
                           <!-- ============================================================== -->
                           <!-- end card profile -->
                           <!-- ============================================================== -->
@@ -69,22 +69,22 @@
                                 <form>
                                 <div class="form-group">
                                     <label for="inputText3" class="col-form-label">Nama</label>
-                                    <input type="text" class="form-control" id="name" name="nim" value="" readonly>
+                                    <input type="text" class="form-control" id="name" name="nim" value="{{$user->username}}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail">Email</label>
-                                    <input type="text" class="form-control" id="name" name="nama" value="" readonly>
+                                    <input type="text" class="form-control" id="email" name="email" value="{{$user->email}}" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputText4" class="col-form-label">Alamat</label>
-                                    <input type="text" class="form-control" id="name" name="alamat" value="" readonly>
+                                    <label for="inputAlamat" class="col-form-label">Alamat</label>
+                                    <input type="text" class="form-control" id="alamat" name="alamat" value="{{$user->alamat}}" readonly>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="name" name="telepon" value="" readonly>
+                                    <label for="inputTanggalLahir">Tanggal Lahir</label>
+                                    <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="{{$user->tgl_lahir}}" readonly>
                                 </div>
                                 </form>   
-                                <a type="button" class="btn btn-primary" href="">Edit</a>
+                                <a type="button" class="btn btn-primary" href="{{ route('editprofil', $user->id) }}">Edit</a>
                           </div>
                       </div>
                       <!-- ============================================================== -->
@@ -100,6 +100,3 @@
         </div>
       </div>
 @endsection
-
-
-

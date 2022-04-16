@@ -20,13 +20,13 @@
                                 <a class="nav-link" href="{{ route('kategori') }}"><i class="fa fa-folder"></i>Kategori</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="\cobatag"><i class="fa fa-tags"></i>Tag</a>
+                                <a class="nav-link" href="{{ route('tag') }}"><i class="fa fa-tags"></i>Tag</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="\cobakomentar"><i class="fa fa-comment"></i>Komentar</a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="\logout"><i class="fa fa-fw fa-arrow-left"></i>Keluar</a>
+                                <a class="nav-link" href="{{ route('logout') }}"><i class="fa fa-fw fa-arrow-left"></i>Keluar</a>
                             </li>
                         </ul>
                     </div>
