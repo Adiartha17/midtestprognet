@@ -39,18 +39,20 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <form action="" method="" enctype="multipart/form-data">
+                                    <form action="{{ Route('savepost') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
                                             <label for="inputJudul" class="col-form-label">Judul Blog</label>
-                                            <input type="text" class="form-control" id="judul" name="judul" value="">
+                                            <input type="text" class="form-control" id="judul" name="judul" value="{{ $post->judul }}">
                                         </div>
                                         @csrf
                                         <div class="form-group">
                                             <label for="konten">Konten Blog</label>
-                                            <textarea class="form-control" id="konten" name="konten" value=" rows="10"></textarea>
+                                            <textarea class="form-control" id="konten" name="konten" value="" rows="10"></textarea>
                                           </div>
-                                        <a type="button" class="btn btn-danger" href="/dashboard">Back</a>
+                                        <a type="button" class="btn btn-danger" href="{{ Route('post') }}">Back</a>
                                         <button type="submit" class="btn btn-success">Terbitkan</button>
+                                    </form>
                                     </form>
                                 </div>
                             </div>

@@ -34,7 +34,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <a class = "btn btn-primary mb-2" href="/cobaaddpost">Tambahkan Pos Baru</a>
+                                    <a class = "btn btn-primary mb-2" href="{{ route('tambahpost') }}">Tambahkan Pos Baru</a>
                                     <table id="example" class="table table-striped table-bordered first" style="width:100%">
                                         <thead>
                                             <tr>
@@ -43,6 +43,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @forelse ($posts as $post)
+                                            <tr>
+                                                <td>{{ $post->judul }}</td>
+                                                <td class="text-center">
+                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="{{ route('post.destroy', $post->id) }}" method="POST">
+                                                        <a href="{{ route('post.edit', $post->id) }}"
+                                                            class="btn btn-sm btn-primary">EDIT</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td class="text-center text-mute" colspan="4">Data post tidak tersedia</td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                        <!-- <tbody>
                                             {{-- <tr> --}}
                                                 <a href="/cobaeditpost" class="btn btn-sm btn-warning">Edit</a>
                                                 <form action="" method="">
@@ -50,7 +71,7 @@
                                                     <input type="submit" class="btn btn-sm btn-danger" value="Hapus">
                                                 </form>
                                             {{-- </tr> --}}
-                                        </tbody>
+                                        </tbody> -->
                                     </table>
                                 </div>
                             </div>

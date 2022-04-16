@@ -34,22 +34,32 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <a class = "btn btn-primary mb-2" href="/cobaaddkategori">Tambahkan Kategori Baru</a>
+                                    <a class = "btn btn-primary mb-2" href="{{ route('tambahkategori') }}">Tambahkan Kategori Baru</a>
                                     <table id="example" class="table table-striped table-bordered first" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Kategori Blog</th>
+                                                <th>Deskripsi</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- <tr> --}}
-                                                <a href="/cobaeditkategori" class="btn btn-sm btn-warning">Edit</a>
-                                                <form action="" method="">
+                                        @forelse ($kategoris as $kategori)
+                                            <tr>
+                                            <td>{{ $kategori->nama_kategori }}</td>
+                                            <td>{{ $kategori->deskripsi }}</td>
+                                            <td><a href="{{'updatekategori', $kategori->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                <form action="{{ route('deletekategori', $kategori->id) }}" method="post">
                                                     @csrf
                                                     <input type="submit" class="btn btn-sm btn-danger" value="Hapus">
                                                 </form>
-                                            {{-- </tr> --}}
+                                            </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td class="text-center text-mute" colspan="4">Data post tidak tersedia</td>
+                                            </tr>
+                                        @endforelse
                                         </tbody>
                                     </table>
                                 </div>
